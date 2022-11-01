@@ -51,7 +51,7 @@ class Car {
     joinColumns: [{ name: 'car_id' }],
     inverseJoinColumns: [{ name: 'specification_id' }],
   })
-  specitications: Specification[];
+  specifications: Specification[];
 
   @CreateDateColumn()
   created_at: Date;
