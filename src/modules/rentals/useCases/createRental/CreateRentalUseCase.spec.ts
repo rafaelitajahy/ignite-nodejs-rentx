@@ -10,6 +10,7 @@ let dayjsDateProvider: DayjsDateProvider;
 
 describe('Create rental', () => {
   const dayAdd24Hours = dayjs().add(1, 'day').toDate();
+
   beforeEach(() => {
     rentalsRepositoryInMemory = new RentalsRepositoryInMemory();
     dayjsDateProvider = new DayjsDateProvider();
