@@ -30,3 +30,5 @@ class UpdateUserAvatarUseCase {
     await this.usersRepository.create(user);
   }
 }
+
+export { UpdateUserAvatarUseCase };
