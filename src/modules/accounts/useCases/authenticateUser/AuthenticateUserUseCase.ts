@@ -3,8 +3,10 @@ import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
 import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
-import { AppError } from '@shared/errors/AppError';
 import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
+import { IUsersTokensRepository } from '@modules/accounts/repositories/IUsersTokensRepository';
+
+import { AppError } from '@shared/errors/AppError';
 import auth from '@config/auth';
 
 interface IRequest {
@@ -66,9 +68,13 @@ class AuthenticateUserUseCase {
       expires_refresh_token_days
     );
 
-    await this.usersTokensRepository.create({});
+    await this.usersTokensRepository.create({
+      user_id: user.id,
+      refresh_token,
+      expires_date: refresh_token_expires_date,
+    });
 
-    return {
+    const tokenReturn: IReponse = {
       user: {
         name: user.name,
         email: user.email,
@@ -76,6 +82,8 @@ class AuthenticateUserUseCase {
       token,
       refresh_token,
     };
+
+    return tokenReturn;
   }
 }
 
