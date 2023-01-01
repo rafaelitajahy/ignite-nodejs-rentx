@@ -1,9 +1,9 @@
-import auth from '@config/auth';
+import { inject, injectable } from 'tsyringe';
+import { sign, verify } from 'jsonwebtoken';
 import { IUsersTokensRepository } from '@modules/accounts/repositories/IUsersTokensRepository';
 import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
 import { AppError } from '@shared/errors/AppError';
-import { sign, verify } from 'jsonwebtoken';
-import { inject } from 'tsyringe';
+import auth from '@config/auth';
 
 interface IPayload {
   sub: string;
@@ -15,6 +15,7 @@ interface ITokenResponse {
   refresh_token: string;
 }
 
+@injectable()
 class RefreshTokenUseCase {
   constructor(
     @inject('UsersTokensRepository')
@@ -33,7 +34,7 @@ class RefreshTokenUseCase {
         user_id,
         token
       );
-
+    
     if (!userToken) {
       throw new AppError('Refresh Token does not exists!');
     }

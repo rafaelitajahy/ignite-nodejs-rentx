@@ -20,7 +20,7 @@ services:
     restart: always
     ports:
       - 3334:3334
-      - 9229:9229 #Você pode inserir essa porta tbm pra poder usar o debug
+      - 9229:9229 #debug
     volumes:
       - .:/usr/app
     links:
