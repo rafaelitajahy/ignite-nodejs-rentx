@@ -2,6 +2,8 @@
 
 https://github.com/rocketseat-education/ignite-nodejs-rentx
 
+https://ethereal.email/
+
 # DOCKER
 
 sudo service docker start
