@@ -1,3 +1,4 @@
+
 import { IStorageProvider } from '../IStorageProvider';
 
 class S3StorageProvider implements IStorageProvider {
